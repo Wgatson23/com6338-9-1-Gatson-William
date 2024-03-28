@@ -2,18 +2,6 @@ var weatherContainer = document.getElementById("weather");
 var formEl = document.querySelector("form");
 var inputEl = document.querySelector("input");
 
-formEl.onsubmit = function (e) {
-	e.preventDefault();
-
-	var userInput = inputEl.value.trim();
-
-	if (!userInput) return;
-
-	getWeather(userInput).then(displayWeatherInfo).catch(displayLocNotFound);
-
-	inputEl.value = "";
-};
-
 function getWeather(query) {
 	if (!query.includes(",")) query += ",us";
 
@@ -98,3 +86,15 @@ function displayWeatherInfo(weatherObj) {
 		});
 	weatherContainer.appendChild(updatedAt);
 }
+
+formEl.onsubmit = function (e) {
+	e.preventDefault();
+
+	var userInput = inputEl.value.trim();
+
+	if (!userInput) return;
+
+	getWeather(userInput).then(displayWeatherInfo).catch(displayLocNotFound);
+
+	inputEl.value = "";
+};
